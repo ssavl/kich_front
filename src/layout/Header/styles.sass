@@ -1,0 +1,80 @@
+.Header
+  position: fixed
+  top: 0
+  left: 0
+  height: 400px
+  width: 100%
+
+  &__running-string
+    position: absolute
+    top: -100px
+    left: 0
+    z-index: 101
+    background: blue
+    width: 100vw
+
+    &-text
+      color: white
+
+  &__user-menu
+    position: absolute
+    z-index: 101
+    right: 100px
+    top: 60px
+
+  & svg
+    cursor: pointer
+    fill: white
+    height: 30px
+    width: 30px
+
+  &__logo-wrapper
+    position: absolute
+    display: inline-block
+    top: 30px
+    left: 60px
+    & img
+      display: inline-block
+      height: 50px
+
+  &__gradient
+    position: relative
+    top: 0
+    height: 200px
+
+  &__item-wrapper
+    padding: 60px 0
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+
+  &__item
+    position: relative
+    display: inline-block
+    z-index: 1
+    background: white
+    border: 2px solid blue
+    border-radius: 10px
+    height: 100px
+    width: 200px
+    text-align: center
+    font-size: 30px
+    color: blue
+    cursor: pointer
+    transition: transform 0.2s ease-out
+
+    &:first-child
+      &:after
+        content: url("../../img/1234.svg")
+        position: absolute
+        height: 80px
+        width: 80px
+        top: -20px
+        left: -40px
+
+
+
+    &:hover
+      transform: translateY(-10px)
+

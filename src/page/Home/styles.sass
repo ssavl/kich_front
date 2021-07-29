@@ -1,0 +1,69 @@
+@font-face
+  font-family: "San Francisco"
+  font-weight: 400
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff")
+
+
+.Home
+  position: relative
+
+  &__ultimate-text
+    color: red
+    font-size: 100px
+    text-align: left
+    padding: 100px 100px
+
+  &__title
+    border: 1px solid blue
+    border-radius: 50px
+    padding: 20px 100px
+    margin: 50px 100px 0 100px
+    text-align: center
+    color: blue
+    font-size: 40px
+
+    & hr
+      background: blue
+      height: 1px
+      border: none
+
+  &__random-items
+    margin: 10px 0 50px 0
+    padding: 50px
+    display: grid
+    grid-template-areas: 'item1 item2 item3 item4'
+    row-gap: 5px
+    grid-template-columns: repeat(4, 1fr)
+    &-first
+      grid-area: item1
+    &-second
+      grid-area: item2
+    &-third
+      grid-area: item3
+    &-fourth
+      grid-area: item4
+
+  &__parent-grid
+    grid-template-areas: 'bigItem smallItem' 'bigItem smallItem2'
+    row-gap: 10px
+    column-gap: 10px
+    display: grid
+    grid-template-columns: 2fr 1fr
+
+    &-item
+      &:first-child
+        grid-area: bigItem
+      &:nth-child(2)
+        grid-area: smallItem
+      &:nth-child(3)
+        grid-area: smallItem2
+
+
+
+
+
+
+
+
+
+
