@@ -1,17 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-
+import {connect} from "react-redux";
 import logo from "../../img/Безымянный-1.png";
 
 // Components
 import {ReactComponent as Burger} from "../../img/menu.svg";
-import {ReactComponent as Close} from "../../img/icon-close.svg";
-import TopBar from "../../page/Home/components/TopBar";
+import AuthModalContainer from "../../containers/AuthModalContainer";
+import {NavLink} from "react-router-dom";
 
+
+// Action
+import {openAuthModal} from '../../redux/actions/authModal'
+import {setOpenTopBar} from '../../redux/actions/topBar'
 
 import './styles.sass'
 
-const Header = ({}) => {
+
+const Header = ({isOpenAuthModal, openAuthModal, setOpenTopBar, username}) => {
 
     const [isOpenTopBar, setTopBar] = useState(false)
     const [stringPosition, setPosition] = useState(0)
@@ -32,7 +37,7 @@ const Header = ({}) => {
                 }
             }
 
-            return(
+            return (
                 clearInterval(x)
             )
         }, 10)
@@ -45,11 +50,15 @@ const Header = ({}) => {
         } else {
             document.body.style.overflowY = 'auto';
         }
-    },[isOpenTopBar])
+    }, [isOpenTopBar])
 
     const handleTopBar = () => {
-        setTopBar(!isOpenTopBar)
+        setOpenTopBar(!isOpenTopBar)
     }
+
+    useEffect(() => {
+        console.log(isOpenAuthModal)
+    }, [isOpenAuthModal])
 
     return (
 
@@ -65,36 +74,40 @@ const Header = ({}) => {
                 </div>
                 <div className={'Header__gradient'}>
                     <div className={'Header__item-wrapper'}>
-                        <div className={'Header__item'}>
+                        <NavLink to={'/'} className={'Header__item'}>
                             <b>Kich.ru</b>
+                        </NavLink>
+                        <div className={'Header__item'}>
+                            <NavLink to={'/mens'}>Мужское</NavLink>
                         </div>
                         <div className={'Header__item'}>
-                            Мужское
+                            <NavLink to={'/womens'}>Женское</NavLink>
                         </div>
                         <div className={'Header__item'}>
-                            Женское
+                            <NavLink to={'/accessories'}>Акссесуары</NavLink>
                         </div>
                         <div className={'Header__item'}>
-                            Аксессуары
+                            {username ?
+                                (<NavLink to={'/profile'}>👋🏻 {username}</NavLink>)
+                            : (<div onClick={() => openAuthModal(!isOpenAuthModal)}>Профиль</div>)}
                         </div>
-                        <div className={'Header__item'}>
-                            Электроника
-                        </div>
-
                     </div>
                 </div>
-                <TopBar isOpen={isOpenTopBar}/>
                 <div className={'Header__user-menu'}>
-                    {!isOpenTopBar ?
-                        <div onClick={handleTopBar}><Burger/></div>
-                        :  <div onClick={handleTopBar}><Close/></div>
-                    }
+                    <div onClick={handleTopBar}><Burger/></div>
                 </div>
             </div>
+            <AuthModalContainer isOpen={isOpenAuthModal} openAuthModal={openAuthModal}/>
         </>
     );
 };
 
 Header.propTypes = {};
 
-export default Header;
+const mapStateToProps = (state) => ({
+    username: state.authReducer.auth.username,
+    isOpenAuthModal: state.authModalReducer.isOpenAuthModal,
+    isOpenTopBar: state.topBarReducer.isOpenTopBar,
+})
+
+export default connect(mapStateToProps, {openAuthModal, setOpenTopBar})(Header)

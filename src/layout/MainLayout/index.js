@@ -7,11 +7,13 @@ import './styles.sass'
 import Header from "../Header";
 import Content from "../Content";
 import Footer from "../Footer";
+import TopBar from "../TopBar";
 
 
 const MainLayout = ({children}) => {
     return (
         <div className={'MainLayout'}>
+            <TopBar/>
             <Header/>
             <Content>
                 {children}
@@ -21,8 +23,6 @@ const MainLayout = ({children}) => {
     );
 };
 
-MainLayout.propTypes = {
-    
-};
+MainLayout.propTypes = {};
 
 export default MainLayout;

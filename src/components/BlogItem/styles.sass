@@ -1,0 +1,31 @@
+@import "../../theme/_mixins"
+@import "../../theme/_colors"
+
+.BlogItem
+
+  &__body
+    padding: 5px 5px
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: start
+
+  &__img-wrapper
+    height: 300px
+    width: 300px
+    overflow: hidden
+    display: flex
+    justify-content: center
+    align-items: center
+    & img
+      height: 100%
+
+  &__title-wrapper
+    @include font-22
+    min-height: 100px
+
+  &__text-wrapper
+    @include font-18
+    min-height: 150px
+
+

@@ -59,7 +59,7 @@ const Input = props => {
     };
 
     return (
-        <>
+        <div className={'Input__wrapper'}>
             {label && <div className='Input__label' >{label}</div>}
             <div className={'Input__border-wrapper'}>
                 {mask ? (
@@ -75,7 +75,7 @@ const Input = props => {
                 )}
             </div>
             {error && <div className='Input__message error'>{error}</div>}
-        </>
+        </div>
     );
 };
 

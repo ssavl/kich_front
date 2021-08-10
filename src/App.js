@@ -1,21 +1,37 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {Provider} from "react-redux";
+import store from './store'
 
 // Components
 import Home from '../src/page/Home'
 import MainLayout from "./layout/MainLayout";
+import PersonalAccount from "./page/PersonalAccount";
+import MensClothing from "./page/MensClothing";
+import WomensClothing from "./page/WomensClothing";
+import Accessories from './page/Accessories'
+
+// Routs
+import PublicRoutes from "./routes/PublicRoutes";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 import './theme/theme.sass'
 
 function App() {
     return (
-        <MainLayout>
+        <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    <Route path={"/"} component={Home}/>
+                    <MainLayout>
+                        <PublicRoutes exact path={["/", '/login']} component={Home}/>
+                        <PublicRoutes exact path={'/mens'} component={MensClothing} />
+                        <PublicRoutes exact path={'/accessories'} component={Accessories} />
+                        <PrivateRoutes exact path={'/womens'} component={WomensClothing} />
+                        <PrivateRoutes exact path={'/profile'} component={PersonalAccount}/>
+                    </MainLayout>
                 </Switch>
             </BrowserRouter>
-        </MainLayout>
+        </Provider>
     );
 }
 

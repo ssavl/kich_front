@@ -1,17 +1,29 @@
-@font-face
-  font-family: "San Francisco"
-  font-weight: 400
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff")
-
+@import "../../theme/_colors"
+@import "../../theme/_mixins"
 
 .Home
   position: relative
 
+  &__main-banner
+    display: grid
+    grid-template-rows: 1fr
+    grid-template-columns: 3fr 1fr
+
+  &__animation-icon
+    display: flex
+    justify-content: flex-start
+    padding-top: 200px
+    & svg
+      width: 250px
+
   &__ultimate-text
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    padding-left: 50px
     color: red
-    font-size: 100px
+    font-size: 90px
     text-align: left
-    padding: 100px 100px
 
   &__title
     border: 1px solid blue
@@ -28,20 +40,14 @@
       border: none
 
   &__random-items
-    margin: 10px 0 50px 0
-    padding: 50px
     display: grid
-    grid-template-areas: 'item1 item2 item3 item4'
-    row-gap: 5px
-    grid-template-columns: repeat(4, 1fr)
-    &-first
-      grid-area: item1
-    &-second
-      grid-area: item2
-    &-third
-      grid-area: item3
-    &-fourth
-      grid-area: item4
+    grid-template-columns: 1fr 1fr 1fr 1fr
+    column-gap: 10px
+    padding: 100px 20px
+
+
+  &__random_item
+    display: block
 
   &__parent-grid
     grid-template-areas: 'bigItem smallItem' 'bigItem smallItem2'
@@ -57,6 +63,14 @@
         grid-area: smallItem
       &:nth-child(3)
         grid-area: smallItem2
+
+  &__blog-grid
+    margin: 80px 0 50px
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr 1fr
+    column-gap: 10px
+    padding: 100px 20px
+
 
 
 

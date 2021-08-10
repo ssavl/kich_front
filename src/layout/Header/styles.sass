@@ -10,7 +10,7 @@
     top: -100px
     left: 0
     z-index: 101
-    background: blue
+    background: transparent
     width: 100vw
 
     &-text
@@ -18,7 +18,7 @@
 
   &__user-menu
     position: absolute
-    z-index: 101
+    z-index: 100
     right: 100px
     top: 60px
 
@@ -63,6 +63,12 @@
     color: blue
     cursor: pointer
     transition: transform 0.2s ease-out
+    text-decoration: none
+    & a
+      text-decoration: none
+      &:visited
+        color: blue
+
 
     &:first-child
       &:after
@@ -72,8 +78,6 @@
         width: 80px
         top: -20px
         left: -40px
-
-
 
     &:hover
       transform: translateY(-10px)
