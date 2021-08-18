@@ -6,6 +6,7 @@ import Model from "../components/Modal";
 import Input from "../components/Input";
 import Modal from "../components/Modal";
 import axios from "axios";
+import InputSelect from "../components/InputSelect";
 
 
 const AddItemContainer = ({
@@ -17,8 +18,6 @@ const AddItemContainer = ({
                               setAddItemModal,
                               item
                           }) => {
-
-    const [img, setImg] = useState(null)
 
     const handleChangeField = (value, {field}) => {
         setAddItemField(field, value)
@@ -48,10 +47,45 @@ const AddItemContainer = ({
         form_data.append('slug', slug)
 
         axios.post('http://127.0.0.1:8000/api/v1/random-goods', form_data)
+            console.log('ergergewrg')
             .then(data => {
-                console.log(data.data)
+                handleChangeStep('success')
             })
     }
+
+    const [val, setVal] = useState('Shoes');
+
+    const handleChange = (value, props) => {
+        handleChangeField('category', val)
+        setVal(value);
+    };
+
+    const OPTOINS = [
+        {
+            id: 'Shoes',
+            name: 'Обувь',
+        },
+        {
+            id: 'Overdress',
+            name: 'Верхняя одежда',
+        },
+        {
+            id: 'Top',
+            name: 'Верх',
+        },
+        {
+            id: 'Bottom',
+            name: 'Низ',
+        },
+        {
+            id: 'Accessories',
+            name: 'Аксессуары',
+        },
+        {
+            id: 'Electronics',
+            name: 'Электроника',
+        },
+    ];
 
     const handleInputChange = async (event) => {
         event.preventDefault()
@@ -63,13 +97,23 @@ const AddItemContainer = ({
             {addNewItemStep === 'zero' && (
                 <Model isOpen={newItemModal}
                        onClose={handleCloseNewItemModal}
-                       title={'Выбирете категорию'}
+                       title={val}
                        onConfirm={() => handleChangeStep('first')}
                        confirmBtn={'Продолжить'}>
-                    <Input type={'text'}
-                           field={'category'}
-                           value={item.category}
-                           onChange={handleChangeField}/>
+                    {/*<Input type={'text'}*/}
+                    {/*       field={'category'}*/}
+                    {/*       value={item.category}*/}
+                    {/*       onChange={handleChangeField}/>*/}
+                    <div style={{ width: 300, marginBottom: 20 }}>
+                        <InputSelect
+                            label='Категория'
+                            icons=''
+                            options={OPTOINS}
+                            value={val}
+                            onChange={handleChange}
+                        />
+                    </div>
+
                 </Model>)}
             {addNewItemStep === 'first' && (
                 <Model isOpen={newItemModal}
@@ -104,7 +148,7 @@ const AddItemContainer = ({
                 <Modal isOpen={newItemModal}
                        onClose={handleCloseNewItemModal}
                        title={'Товар уже выставлен! Остался последний шаг👇🏻'}
-                       onConfirm={() => handleChangeStep('success')}
+                       onConfirm={handleCreateItem}
                        confirmBtn={'Добавить'}>
                     <Input placeholder={'Размер'}
                            value={item.size}
@@ -140,7 +184,7 @@ const AddItemContainer = ({
                 <Model isOpen={newItemModal}
                        onClose={handleCloseNewItemModal}
                        title={'Успех'}
-                       onConfirm={handleCreateItem}
+                       onConfirm={handleCloseNewItemModal}
                        confirmBtn={'Ура'}>
 
                     <h1>Ваш товар успешно добавлен!</h1>

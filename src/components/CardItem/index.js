@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Components
 import Button from "../Button";
+
+// Utils
+import { formatPriceNumber } from '../../utils/formatters'
 
 import './styles.sass'
 
@@ -17,7 +21,7 @@ const CardItem = ({img, title, price, onClick}) => {
                     {title}
                 </div>
                 <div className={'CardItem__text'}>
-                    {price}
+                    {formatPriceNumber(price)}
                 </div>
                 <div className={'CardItem__btn-wrapper'}>
                     <Button label={'Подробнее'}

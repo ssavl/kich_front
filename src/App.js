@@ -21,15 +21,15 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <Switch>
-                    <MainLayout>
+                <MainLayout>
+                    <Switch>
                         <PublicRoutes exact path={["/", '/login']} component={Home}/>
                         <PublicRoutes exact path={'/mens'} component={MensClothing} />
                         <PublicRoutes exact path={'/accessories'} component={Accessories} />
                         <PrivateRoutes exact path={'/womens'} component={WomensClothing} />
                         <PrivateRoutes exact path={'/profile'} component={PersonalAccount}/>
-                    </MainLayout>
-                </Switch>
+                    </Switch>
+                </MainLayout>
             </BrowserRouter>
         </Provider>
     );

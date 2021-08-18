@@ -1,0 +1,50 @@
+@import '../../../theme/_colors'
+@import '../../../theme/_mixins'
+
+.RadioButton
+
+  & > span
+    display: inline-flex
+    align-items: center
+    user-select: none
+
+    &::before
+      content: ''
+      display: inline-block
+      width: 1em
+      height: 1em
+      flex-shrink: 0
+      flex-grow: 0
+      border: 1px solid $color-grey-DFE0E8
+      border-radius: 50%
+      margin-right: 0.5em
+      background-repeat: no-repeat
+      background-position: center center
+      background-size: 50% 50%
+      background: $color-grey-DFE0E8
+      color: $color-grey-DFE0E8
+
+
+  & > input
+    position: absolute
+    z-index: -1
+    opacity: 0
+
+
+    &:not(:disabled):not(:checked)+span:hover::before
+      border-color: $color-grey-DFE0E8
+      background: $color-grey-DFE0E8
+      color: $color-grey-DFE0E8
+
+    &:not(:disabled):active+span::before
+      background-color: $color-blue-99D5F0
+      border-color: $color-grey-DFE0E8
+
+    &:focus:not(:checked)+span::before
+      border-color: $color-grey-DFE0E8
+
+    &:checked+span::before
+      border: 3px solid  $color-grey-DFE0E8
+      background-color: $color-blue
+      box-sizing: border-box
+      transform: scale(1.3)

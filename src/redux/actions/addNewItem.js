@@ -1,7 +1,8 @@
 import {
     SET_ADD_ITEMS_STEP,
     SET_ITEM_FIELD,
-    SET_ADD_ITEM_MODAL } from './type'
+    SET_ADD_ITEM_MODAL,
+    SET_USER_ITEMS, } from './type'
 
 export const setAddItemStep = (value) => (dispatch) => {
     dispatch({
@@ -24,5 +25,12 @@ export const setAddItemField = (field, value) => (dispatch) => {
             field: field,
             value: value,
         }
+    })
+}
+
+export const setUserItems = (value) => (dispatch) => {
+    dispatch({
+        type: SET_USER_ITEMS,
+        payload: value,
     })
 }

@@ -8,7 +8,7 @@
   border: 2px solid blue
   border-radius: 50px
   padding: 20px 20px
-  margin: 70px 30px
+  margin: 50px 30px 0
 
   &__avatar
     display: flex
@@ -20,6 +20,13 @@
     width: 80px
     height: 80px
     cursor: pointer
+    overflow: hidden
+    & text
+      position: absolute
+      left: -30px
+      font-size: 1px
+    & img
+      width: 100%
 
 
   &__info
@@ -28,7 +35,7 @@
     border: 2px solid blue
     border-radius: 50px
     padding: 20px 20px
-    margin: 70px 30px
+    margin: 30px 30px 0
     & hr
       background: blue
       height: 1px
@@ -50,9 +57,9 @@
     @include font-16
 
   &__add-item
-    display: flex
-    justify-content: space-between
-    align-items: center
+    display: grid
+    grid-template-columns: 1fr 1fr
+    column-gap: 30px
     padding: 20px 20px
     text-align: left
     margin: 20px 20px

@@ -5,14 +5,17 @@ import {connect} from "react-redux";
 // Components
 import Button from "../../components/Button";
 import AddItemContainer from "../../containers/AddItemContainer";
+import MyItems from "./components/MyItems";
 
 
 // Actions
 import {
     setAddItemStep,
     setAddItemField,
-    setAddItemModal
+    setAddItemModal,
+    setUserItems,
 } from '../../redux/actions/addNewItem'
+
 
 import './styles.sass'
 
@@ -23,9 +26,11 @@ const PersonalAccount = ({
                              first_name,
                              last_name,
                              email,
+                             user_img,
 
                              newItemModal,
                              addNewItemStep,
+                             userItems,
 
                              title,
                              description,
@@ -46,6 +51,7 @@ const PersonalAccount = ({
                              setAddItemStep,
                              setAddItemField,
                              setAddItemModal,
+                             setUserItems,
                          }) => {
 
     const item = {
@@ -72,6 +78,15 @@ const PersonalAccount = ({
         setAddItemStep('zero')
     }
 
+    const handleLogOut = () => {
+        localStorage.clear()
+        window.location.reload();
+    }
+
+    const handleAddAvatar = () => {
+
+    }
+
     return (
 
         <>
@@ -81,7 +96,11 @@ const PersonalAccount = ({
             <div className={'PersonalAccount__info'}>
                 <div className={'PersonalAccount__username'}>
                     <div>Логин: <b>{username}</b></div>
-                    <div className={'PersonalAccount__avatar'}>+</div>
+                    <input  id={'file_avatar'} hidden={true} type="file"/>
+                    {user_img === null && (<label className={'PersonalAccount__avatar'} for="file_avatar">+</label>)}
+                    {user_img !== null && (<label className={'PersonalAccount__avatar'} for="file_avatar">
+                        <img src={`http://127.0.0.1:8000${user_img}`} alt="user_img"/>
+                    </label>)}
                 </div>
                 <hr/>
                 <div className={'PersonalAccount__info-item'}>
@@ -95,9 +114,10 @@ const PersonalAccount = ({
                 </div>
                 <div className={'PersonalAccount__add-item'}>
                     <Button label={'Добавить обьявление'} onClick={handleCloseNewItemModal}/>
+                    <Button label={'Выйти'} onClick={handleLogOut}  />
                 </div>
             </div>
-
+            <MyItems userId={id} setUserItems={setUserItems} userItems={userItems}/>
             <AddItemContainer addNewItemStep={addNewItemStep}
                               newItemModal={newItemModal}
                               setAddItemField={setAddItemField}
@@ -118,9 +138,11 @@ const mapStateToProps = (state) => ({
     first_name: state.authReducer.auth.first_name,
     last_name: state.authReducer.auth.last_name,
     email: state.authReducer.auth.email,
+    user_img: state.authReducer.auth.img,
 
     newItemModal: state.addNewItemReducer.newItemModal,
     addNewItemStep: state.addNewItemReducer.addNewItemStep,
+    userItems: state.addNewItemReducer.userItems,
 
     title: state.addNewItemReducer.fields.title,
     description: state.addNewItemReducer.fields.description,
@@ -142,5 +164,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     setAddItemStep,
     setAddItemField,
-    setAddItemModal
+    setAddItemModal,
+    setUserItems,
 })(PersonalAccount)

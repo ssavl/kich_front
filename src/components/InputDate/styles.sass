@@ -1,0 +1,134 @@
+@import '../../../theme/_mixins'
+@import '../../../theme/_colors'
+
+.InputDate
+    position: relative
+    &__calendar
+        background: $color-grey-F7F7FA
+        width: 295px
+        padding: 25px 25px 35px 25px
+        border-radius: 10px
+        position: absolute
+        box-sizing: border-box
+        top: 75px
+        left: 0
+        z-index: 10
+        transform: scale(0)
+        transform-origin: top left
+        transition: transform 0.2s ease-out
+
+        &.open
+            transform: scale(1)
+
+        & .react-calendar
+            & button
+                padding: 0
+                background: transparent
+                border: none
+                cursor: pointer
+                & + button
+                    margin-left: 0
+            &__navigation
+                margin-bottom: 25px
+                justify-content: center
+
+                &__label
+                    @include font-16
+                    color: rgba($color-text, 0.4)
+                    font-weight: 500
+                    flex-grow: 0 !important
+                    min-width: 130px
+
+                &__arrow
+                    width: 24px
+                    height: 24px
+
+                    & svg
+                        fill: $color-blue
+                        width: 25px
+                        height: 25px
+
+                    &:disabled
+                        & svg
+                            fill: $color-grey-B4B9C1
+
+            &__tile
+                @include font-14
+                color: rgba($color-text, 0.4)
+                font-weight: 500
+                -webkit-tap-highlight-color: transparent
+                & abbr
+                    border: none
+                &--active
+                    color: $color-text
+                    &.react-calendar__month-view__days__day
+                        background-color: $color-white
+                        border-color: $color-blue !important
+                &--hasActive
+                    color: $color-text
+                    &.react-calendar__century-view__decades__decade
+                        background-color: $color-white
+                        border-color: $color-blue !important
+                    &.react-calendar__decade-view__years__year
+                        background-color: $color-white
+                        border-color: $color-blue !important
+                    &.react-calendar__year-view__months__month
+                        background-color: $color-white
+                        border-color: $color-blue !important
+
+            &__century-view
+                &__decades
+                    &__decade
+                        padding: 10px !important
+                        flex-basis: 50% !important
+                        max-width: 50% !important
+                        border-radius: 20px
+                        border: 2px solid transparent !important
+            &__decade-view
+                &__years
+                    &__year
+                        padding: 10px !important
+                        border-radius: 20px
+                        border: 2px solid transparent !important
+            &__year-view
+                &__months
+                    &__month
+                        padding: 10px !important
+                        border-radius: 20px
+                        border: 2px solid transparent !important
+
+            &__month-view
+                &__weekdays
+                    &__weekday
+                        display: none
+
+                &__days
+                    &__day
+                        width: 32px
+                        height: 35px
+                        box-sizing: border-box
+                        border-radius: 50%
+                        border: 2px solid transparent !important
+                        margin-bottom: 5px
+                        &:disabled
+                            background: rgba($color-red, 0.3)
+                            border-radius: 0
+                            &:first-child,
+                            &:nth-child(7n + 1)
+                                border-top-left-radius: 50%
+                                border-bottom-left-radius: 50%
+                            &:nth-child(7n)
+                                border-top-right-radius: 50%
+                                border-bottom-right-radius: 50%
+                        &.disabled-last
+                            border-top-right-radius: 50%
+                            border-bottom-right-radius: 50%
+                        &.disabled-first
+                            border-top-left-radius: 50%
+                            border-bottom-left-radius: 50%
+                            
+                        
+                        &--neighboringMonth
+                            color: rgba($color-text, 0.2)
+
+

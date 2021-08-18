@@ -14,7 +14,7 @@ const initialState = {
         password: '',
     },
     auth: {
-        id:'',
+        id: '',
         username: '',
         first_name: '',
         last_name: '',
@@ -24,6 +24,7 @@ const initialState = {
         auth_token: '',
         isAuthenticated: false,
         user: false,
+        img: null,
     }
 
 }
@@ -50,6 +51,7 @@ export default function (state = initialState, actions) {
                     first_name: actions.payload.first_name,
                     last_name: actions.payload.last_name,
                     email: actions.payload.email,
+                    img: actions.payload.img,
                 }
             }
         }

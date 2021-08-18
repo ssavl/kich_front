@@ -17,4 +17,5 @@ export const GET_ALL_GOODS = 'GET_ALL_GOODS'
 export const SET_ADD_ITEMS_STEP = 'SET_ADD_ITEMS_STEP'
 export const SET_ITEM_FIELD = 'SET_ITEM_FIELD'
 export const SET_ADD_ITEM_MODAL = 'SET_ADD_ITEM_MODAL'
+export const SET_USER_ITEMS = 'SET_USER_ITEMS'
 

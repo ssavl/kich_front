@@ -1,9 +1,11 @@
 import {
     SET_ADD_ITEMS_STEP,
     SET_ITEM_FIELD,
-    SET_ADD_ITEM_MODAL } from '../actions/type'
+    SET_ADD_ITEM_MODAL,
+    SET_USER_ITEMS, } from '../actions/type'
 
 const initialState = {
+    userItems: null,
     newItemModal: false,
     addNewItemStep: '',
     fields: {
@@ -40,6 +42,11 @@ export default function (state = initialState, actions) {
         case SET_ITEM_FIELD : {
             return {
                 ...state, fields: {...state.fields, [actions.payload.field]: actions.payload.value}
+            }
+        }
+        case SET_USER_ITEMS: {
+            return {
+                ...state, userItems: actions.payload
             }
         }
         default: return state

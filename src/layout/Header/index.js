@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import logo from "../../img/Безымянный-1.png";
+import {NavLink} from 'react-router-dom'
 
 // Components
 import {ReactComponent as Burger} from "../../img/menu.svg";
 import AuthModalContainer from "../../containers/AuthModalContainer";
-import {NavLink} from "react-router-dom";
 
 
 // Action
@@ -69,9 +69,12 @@ const Header = ({isOpenAuthModal, openAuthModal, setOpenTopBar, username}) => {
                 </div>
             </div>
             <div className={'Header'}>
-                <div className={'Header__logo-wrapper'}>
-                    <img src={logo}/>
-                </div>
+                <NavLink to={'/'}>
+                    <div className={'Header__logo-wrapper'}>
+                        <img src={logo}/>
+                    </div>
+                </NavLink>
+
                 <div className={'Header__gradient'}>
                     <div className={'Header__item-wrapper'}>
                         <NavLink to={'/'} className={'Header__item'}>
@@ -89,7 +92,7 @@ const Header = ({isOpenAuthModal, openAuthModal, setOpenTopBar, username}) => {
                         <div className={'Header__item'}>
                             {username ?
                                 (<NavLink to={'/profile'}>👋🏻 {username}</NavLink>)
-                            : (<div onClick={() => openAuthModal(!isOpenAuthModal)}>Профиль</div>)}
+                                : (<div onClick={() => openAuthModal(!isOpenAuthModal)}>Профиль</div>)}
                         </div>
                     </div>
                 </div>

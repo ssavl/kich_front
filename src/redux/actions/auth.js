@@ -20,7 +20,7 @@ export const closeModal = (value) => (dispatch) => {
     })
 }
 
-export const setUser = (id, username, first_name, last_name, email) => (dispatch) => {
+export const setUser = (id, username, first_name, last_name, email, img) => (dispatch) => {
     dispatch({
         type: AUTH_SET_USER,
         payload: {
@@ -29,6 +29,7 @@ export const setUser = (id, username, first_name, last_name, email) => (dispatch
             first_name: first_name,
             last_name: last_name,
             email: email,
+            img: img,
         }
     })
 }
